@@ -1,13 +1,12 @@
 package warehouse.model;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "productdata")
 public class ProductData {
 
-    @Id
+	@Id
 	private String ID;
 
 	private String warehouseID;
@@ -16,14 +15,9 @@ public class ProductData {
 	private String productCategory;
 	private double productQuantity;
 
-	/**
-	 * Constructor
-	 */
-	public ProductData() {
-	}
+	public ProductData() {}
 
-	public ProductData(String warehouseID, String productID, String productName, String productCategory, double productQuantity ) {
-		super();
+	public ProductData(String warehouseID, String productID, String productName, String productCategory, double productQuantity) {
 		this.warehouseID = warehouseID;
 		this.productID = productID;
 		this.productName = productName;
@@ -31,6 +25,7 @@ public class ProductData {
 		this.productQuantity = productQuantity;
 	}
 
+	// Getters and setters
 	public String getID() {
 		return ID;
 	}
@@ -79,13 +74,11 @@ public class ProductData {
 		this.productQuantity = productQuantity;
 	}
 
-	/**
-	 * Methods
-	 */
 	@Override
 	public String toString() {
-		String info = String.format("Product Info: WarehouseID = %s, ProductID = %s, ProductName = %s, ProductCategory = %s, ProductQuantity = %4.1f",
-			warehouseID, productID, productName, productCategory, productQuantity );
-		return info;
+		return String.format(
+				"ProductData[ID=%s, warehouseID=%s, productID=%s, productName=%s, productCategory=%s, productQuantity=%s]",
+				ID, warehouseID, productID, productName, productCategory, productQuantity
+		);
 	}
 }
